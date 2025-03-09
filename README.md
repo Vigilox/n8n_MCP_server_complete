@@ -3,6 +3,7 @@
 A Model Context Protocol (MCP) server that enables seamless management of n8n workflows directly within LLMs and AI agents through the Smithery Model Context Protocol.
 
 ![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-brightgreen.svg)
+[![npm version](https://badge.fury.io/js/%40dopehunter%2Fn8n-mcp-server.svg)](https://www.npmjs.com/package/@dopehunter/n8n-mcp-server)
 
 ## Features
 
@@ -12,6 +13,44 @@ A Model Context Protocol (MCP) server that enables seamless management of n8n wo
 - Monitor workflow executions
 - Pass parameters to workflows
 - MCP-compatible interface for AI agents
+
+## Getting Started
+
+### Quick Start
+
+1. **Install the package**
+   ```bash
+   npm install @dopehunter/n8n-mcp-server
+   ```
+
+2. **Create a .env file**
+   ```bash
+   cp .env.example .env
+   ```
+
+3. **Configure your n8n connection**
+   Edit the `.env` file and set:
+   - `N8N_BASE_URL`: URL to your n8n instance (e.g., `http://localhost:5678/api`)
+   - `N8N_API_KEY`: Your n8n API key (generate this in n8n settings)
+
+4. **Start the server**
+   ```bash
+   npm start
+   ```
+
+5. **Test the server**
+   ```bash
+   curl -X POST http://localhost:3000/mcp -H "Content-Type: application/json" \
+     -d '{"jsonrpc":"2.0","id":"1","method":"mcp.tools.list","params":{}}'
+   ```
+
+### Common Issues and Troubleshooting
+
+- **Connection Refused Errors**: Make sure your n8n instance is running and accessible at the URL specified in N8N_BASE_URL
+- **API Key Issues**: Verify your n8n API key is correct and has appropriate permissions
+- **Docker Issues**: Ensure Docker is running before attempting to build or run the Docker image
+
+For more detailed troubleshooting, see the [Troubleshooting Guide](docs/troubleshooting.md).
 
 ## Components
 
@@ -81,22 +120,24 @@ A Model Context Protocol (MCP) server that enables seamless management of n8n wo
 
 ## Installation
 
-1. Clone the repository
-   ```
-   git clone https://github.com/dopehunter/n8n_MCP_server_complete.git
-   cd n8n_MCP_server_complete
-   ```
+### NPM
+```bash
+npm install @dopehunter/n8n-mcp-server
+```
 
-2. Install dependencies
-   ```
-   npm install
-   ```
+### Direct Usage with npx
+```bash
+npx @dopehunter/n8n-mcp-server
+```
 
-3. Configure environment variables
-   ```
-   cp .env.example .env
-   ```
-   Edit the `.env` file with your n8n API details.
+### From Source
+```bash
+git clone https://github.com/dopehunter/n8n_MCP_server_complete.git
+cd n8n_MCP_server_complete
+npm install
+cp .env.example .env
+# Edit the .env file with your n8n API details
+```
 
 ## Development
 
