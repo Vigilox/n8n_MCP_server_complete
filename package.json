@@ -1,5 +1,5 @@
 {
-  "name": "@your-org/n8n-mcp-server",
+  "name": "@dopehunter/n8n-mcp-server",
   "version": "0.1.0",
   "description": "MCP server for n8n workflow management in Cursor",
   "main": "dist/app.js",
@@ -30,7 +30,7 @@
     "smithery",
     "protocol"
   ],
-  "author": "",
+  "author": "dopehunter",
   "license": "ISC",
   "repository": {
     "type": "git",

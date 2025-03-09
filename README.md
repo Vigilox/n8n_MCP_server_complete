@@ -73,7 +73,7 @@ A Model Context Protocol (MCP) server that enables seamless management of n8n wo
   "mcpServers": {
     "n8n": {
       "command": "npx",
-      "args": ["-y", "@your-org/n8n-mcp-server"]
+      "args": ["-y", "@dopehunter/n8n-mcp-server"]
     }
   }
 }
