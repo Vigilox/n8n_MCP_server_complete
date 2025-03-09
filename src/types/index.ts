@@ -1,19 +1,22 @@
 // MCP related types
 export interface MCPRequest {
-  id: string;
+  jsonrpc?: string;
+  id: string | number | null;
   method: string;
   params?: Record<string, any>;
 }
 
 export interface MCPResponse {
-  id: string;
-  result: any | null;
-  error: MCPError | null;
+  jsonrpc: string;
+  id: string | number | null;
+  result?: any;
+  error?: MCPError;
 }
 
 export interface MCPError {
   code: number;
   message: string;
+  data?: any;
 }
 
 // n8n related types

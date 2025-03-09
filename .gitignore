@@ -28,4 +28,11 @@ coverage/
 
 # OS specific files
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+# n8n-mcp-server directory (redundant)
+n8n-mcp-server/ 

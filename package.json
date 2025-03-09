@@ -1,8 +1,11 @@
 {
-  "name": "n8n-mcp-server",
+  "name": "@your-org/n8n-mcp-server",
   "version": "0.1.0",
   "description": "MCP server for n8n workflow management in Cursor",
   "main": "dist/app.js",
+  "bin": {
+    "n8n-mcp-server": "bin/cli.js"
+  },
   "scripts": {
     "start": "node dist/app.js",
     "start:dev": "nodemon",
@@ -14,22 +17,38 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm run build"
   },
-  "keywords": ["n8n", "mcp", "cursor", "workflow"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "n8n",
+    "mcp",
+    "cursor",
+    "workflow",
+    "smithery",
+    "protocol"
+  ],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dopehunter/n8n_MCP_server_complete.git"
+  },
   "dependencies": {
     "axios": "^1.8.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "js-yaml": "^4.1.0",
     "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.13.10",
     "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^8.26.0",
@@ -43,4 +62,4 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   }
-} 
+}

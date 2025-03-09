@@ -1,0 +1,67 @@
+name: n8n_mcp_server
+version: 0.1.0
+description: "An MCP server for managing n8n workflows through the Model Context Protocol"
+tools:
+  - name: n8n_list_workflows
+    description: "List all workflows in the n8n instance"
+    parameters:
+      type: object
+      properties: {}
+      required: []
+
+  - name: n8n_get_workflow
+    description: "Get details of a specific workflow"
+    parameters:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          description: "ID of the workflow to retrieve"
+      required: ["workflowId"]
+
+  - name: n8n_execute_workflow
+    description: "Execute an n8n workflow"
+    parameters:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          description: "ID of the workflow to execute"
+        data:
+          type: object
+          description: "Optional data to pass to the workflow"
+      required: ["workflowId"]
+
+  - name: n8n_get_executions
+    description: "Get execution history for a workflow"
+    parameters:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          description: "ID of the workflow to get executions for"
+        limit:
+          type: number
+          description: "Maximum number of executions to return"
+          default: 20
+      required: ["workflowId"]
+
+  - name: n8n_activate_workflow
+    description: "Activate a workflow"
+    parameters:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          description: "ID of the workflow to activate"
+      required: ["workflowId"]
+
+  - name: n8n_deactivate_workflow
+    description: "Deactivate a workflow"
+    parameters:
+      type: object
+      properties:
+        workflowId:
+          type: string
+          description: "ID of the workflow to deactivate"
+      required: ["workflowId"] 

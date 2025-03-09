@@ -1,6 +1,8 @@
 # n8n MCP Server
 
-A Model Context Protocol (MCP) server that enables seamless management of n8n workflows directly within the Cursor editor.
+A Model Context Protocol (MCP) server that enables seamless management of n8n workflows directly within LLMs and AI agents through the Smithery Model Context Protocol.
+
+![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-brightgreen.svg)
 
 ## Features
 
@@ -9,19 +11,80 @@ A Model Context Protocol (MCP) server that enables seamless management of n8n wo
 - Execute workflows
 - Monitor workflow executions
 - Pass parameters to workflows
+- MCP-compatible interface for AI agents
+
+## Components
+
+### Tools
+
+* **n8n_list_workflows**  
+   * List all workflows in the n8n instance  
+   * Input: None
+
+* **n8n_get_workflow**  
+   * Get details of a specific workflow  
+   * Input: `workflowId` (string, required): ID of the workflow to retrieve
+
+* **n8n_execute_workflow**  
+   * Execute an n8n workflow  
+   * Inputs:  
+     * `workflowId` (string, required): ID of the workflow to execute  
+     * `data` (object, optional): Data to pass to the workflow
+
+* **n8n_get_executions**  
+   * Get execution history for a workflow  
+   * Inputs:  
+     * `workflowId` (string, required): ID of the workflow to get executions for  
+     * `limit` (number, optional): Maximum number of executions to return
+
+* **n8n_activate_workflow**  
+   * Activate a workflow  
+   * Input: `workflowId` (string, required): ID of the workflow to activate
+
+* **n8n_deactivate_workflow**  
+   * Deactivate a workflow  
+   * Input: `workflowId` (string, required): ID of the workflow to deactivate
 
 ## Prerequisites
 
 - Node.js (v14+)
 - n8n instance with API access
-- Cursor editor with MCP support
+- An LLM or AI agent that supports the Model Context Protocol
+
+## Configuration Options
+
+### Docker Configuration
+
+```json
+{
+  "mcpServers": {
+    "n8n": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "--init", "-e", "N8N_API_KEY=$N8N_API_KEY", "-e", "N8N_BASE_URL=$N8N_BASE_URL", "mcp/n8n-mcp-server"]
+    }
+  }
+}
+```
+
+### NPX Configuration
+
+```json
+{
+  "mcpServers": {
+    "n8n": {
+      "command": "npx",
+      "args": ["-y", "@your-org/n8n-mcp-server"]
+    }
+  }
+}
+```
 
 ## Installation
 
 1. Clone the repository
    ```
-   git clone https://github.com/yourusername/n8n-mcp-server.git
-   cd n8n-mcp-server
+   git clone https://github.com/dopehunter/n8n_MCP_server_complete.git
+   cd n8n_MCP_server_complete
    ```
 
 2. Install dependencies
@@ -52,22 +115,24 @@ Run tests:
 npm test
 ```
 
-## Usage
+## Usage With Claude or Other LLMs
 
 1. Start the MCP server:
    ```
    npm start
    ```
 
-2. Configure Cursor to use the MCP server:
-   - Open Cursor settings
-   - Navigate to the MCP section
-   - Add the server URL (e.g., `http://localhost:3000`)
+2. Configure your LLM client to use the MCP server:
+   - For Claude Desktop, use the configuration from the "Configuration Options" section.
+   - For other clients, point to the server URL (e.g., `http://localhost:3000/mcp`).
 
-3. Use n8n workflow commands in Cursor:
-   - "List workflows"
-   - "Execute workflow [workflow name]"
-   - "Get workflow status [execution ID]"
+3. Your LLM can now use n8n workflows directly through MCP commands.
+
+## Building Docker Image
+
+```bash
+docker build -t mcp/n8n-mcp-server .
+```
 
 ## API Documentation
 
