@@ -33,14 +33,14 @@ USER appuser
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV MCP_SERVER_PORT=3000
+ENV MCP_SERVER_PORT=3005
 ENV HOST=0.0.0.0
 
 # Make the CLI script executable
 RUN chmod +x /app/bin/cli.js
 
 # Expose the port
-EXPOSE 3000
+EXPOSE 3005
 
 # Start the application
 CMD ["node", "dist/app.js"] 
